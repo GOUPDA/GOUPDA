@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import CategoryGrid from './components/CategoryGrid';
-import FeaturedCampaign from './components/FeaturedCampaign';
-import ProductShowcase from './components/ProductShowcase';
-import Footer from './components/Footer';
+import Navbar from './components/Navbar.tsx';
+import Hero from './components/Hero.tsx';
+import CategoryGrid from './components/CategoryGrid.tsx';
+import FeaturedCampaign from './components/FeaturedCampaign.tsx';
+import ProductShowcase from './components/ProductShowcase.tsx';
+import Footer from './components/Footer.tsx';
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);

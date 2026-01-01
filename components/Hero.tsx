@@ -3,68 +3,36 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden flex flex-col md:flex-row">
-      {/* Left Panel: The Product Concept */}
-      <div className="relative w-full h-1/2 md:h-full md:w-1/2 bg-[#B5C2BA] flex flex-col items-center justify-center overflow-hidden">
-        {/* Decorative subtle texture overlay */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/leather.png")' }}></div>
-        
-        {/* Logo Overlay Top */}
-        <div className="absolute top-12 md:top-20 z-10">
-           <h1 className="text-4xl md:text-6xl tracking-[0.3em] font-light text-white serif opacity-90">
-              GOUPDA
-           </h1>
-        </div>
-
-        {/* Product Image Placeholder (Signature Red Jar) */}
-        <div className="relative z-0 transform hover:scale-105 transition-transform duration-1000">
-          <div className="w-48 h-48 md:w-80 md:h-80 bg-[#D93025] rounded-t-lg shadow-2xl relative">
-             {/* Jar Lid detail */}
-             <div className="absolute top-0 w-full h-1/3 border-b border-black/10"></div>
-             {/* Subtle Logo on Jar */}
-             <div className="absolute bottom-12 right-6">
-                <span className="text-[10px] tracking-widest text-white/40 uppercase">GOUPDA</span>
-             </div>
-          </div>
-          {/* Shadow */}
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[120%] h-8 bg-black/10 blur-xl rounded-full"></div>
-        </div>
-
-        {/* Tagline Bottom */}
-        <div className="absolute bottom-12 px-8 text-center max-w-xs">
-          <p className="text-[10px] md:text-xs leading-relaxed text-white font-light tracking-wide italic serif">
-            To redefine beauty as elegance and wellness, inspired by Korean aesthetics.
-          </p>
-        </div>
-      </div>
-
-      {/* Right Panel: The Heritage Concept */}
-      <div className="relative w-full h-1/2 md:h-full md:w-1/2 overflow-hidden flex flex-col items-center justify-center">
-        <img 
-          src="https://images.unsplash.com/photo-1548115184-bc65ee477ad9?q=80&w=2070&auto=format&fit=crop" 
-          alt="Korean Palace Heritage" 
-          className="absolute inset-0 w-full h-full object-cover scale-110 md:scale-100 grayscale-[0.2] brightness-95"
-        />
-        <div className="absolute inset-0 bg-black/10"></div>
-
-        {/* Logo Overlay Center */}
-        <div className="relative z-10 text-center space-y-4">
-           <h2 className="text-4xl md:text-6xl tracking-[0.3em] font-light text-white serif">
-              GOUPDA
-           </h2>
-           <p className="text-[10px] md:text-xs leading-relaxed text-white/90 font-light tracking-widest max-w-[250px] mx-auto uppercase">
-             To redefine beauty as elegance and wellness, inspired by Korean aesthetics.
-           </p>
-        </div>
-      </div>
-
-      {/* Center Divider Logo (Floating transition) */}
-      <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-px h-32 bg-white/20"></div>
+    <section className="relative w-full h-screen overflow-hidden bg-[#B5C2BA] flex items-center justify-center">
+      {/* Decorative subtle leather-like texture overlay */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/leather.png")' }}></div>
       
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 opacity-50">
-        <div className="w-px h-12 bg-white animate-pulse"></div>
-        <span className="text-[8px] uppercase tracking-[0.5em] text-white">Explore</span>
+      {/* Background Gradient for Depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10"></div>
+
+      {/* Product Showcase (Signature Red Jar) - Now Centered and Focal Point */}
+      <div className="relative z-10 transform hover:scale-105 transition-transform duration-1000 flex flex-col items-center">
+        <div className="w-56 h-56 md:w-96 md:h-96 bg-[#D93025] rounded-t-lg shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] relative">
+           {/* Jar Lid detail */}
+           <div className="absolute top-0 w-full h-1/3 border-b border-black/10"></div>
+           
+           {/* Minimal Logo on Jar (Part of the product object) */}
+           <div className="absolute bottom-12 right-8">
+              <span className="text-[10px] md:text-xs tracking-[0.3em] text-white/40 uppercase font-light">GOUPDA</span>
+           </div>
+        </div>
+        
+        {/* Soft Shadow below the product */}
+        <div className="mt-4 w-[120%] h-12 bg-black/10 blur-2xl rounded-full"></div>
+      </div>
+
+      {/* Floating Center Divider (Subtle minimalist line) */}
+      <div className="absolute top-[10%] bottom-[10%] left-1/2 -translate-x-1/2 w-px bg-white/10 hidden md:block"></div>
+      
+      {/* Scroll indicator - Functionality preserved for UX */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 opacity-40">
+        <div className="w-px h-16 bg-white/60 animate-[bounce_2s_infinite]"></div>
+        <span className="text-[8px] uppercase tracking-[0.6em] text-white font-light">Discover</span>
       </div>
     </section>
   );
