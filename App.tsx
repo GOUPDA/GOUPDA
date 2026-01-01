@@ -7,33 +7,40 @@ import FeaturedCampaign from './components/FeaturedCampaign.tsx';
 import Footer from './components/Footer.tsx';
 import AdminPanel from './components/AdminPanel.tsx';
 
+const STORAGE_KEY = 'goupda_brand_content';
+
+const DEFAULT_CONTENT = {
+  global: {
+    brandName: 'GOUPDA',
+  },
+  hero: {
+    image: 'none',
+  },
+  philosophy: {
+    title: 'Inspired by the Precision of Korean Aesthetics',
+    desc: 'Inspired by the world-renowned premium Korean aesthetic rituals, GOUPDA is meticulously engineered to illuminate your skin both inside and out. We present a new dimension of skincare born to transcend ordinary results—redefining your beauty and turning back the hands of time.',
+  },
+  categories: [
+    { id: 1, name: 'The Crimson Ritual', label: 'Aesthetic Wisdom', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1200&auto=format&fit=crop' },
+    { id: 2, name: 'The Azure Essence', label: 'Modern Wellness', img: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=1200&auto=format&fit=crop' },
+  ],
+  campaigns: [
+    {
+      title: 'Heritage in Every Drop',
+      description: 'Our Crimson Collection utilizes fermented Red Pine extracts, harvested during the first frost to capture the peak of nature\'s resilience. A fusion of tradition and biotechnology.',
+      image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=1200&auto=format&fit=crop'
+    }
+  ]
+};
+
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
-  // Global Brand Content State - Controlling EVERYTHING from here
-  const [brandContent, setBrandContent] = useState({
-    global: {
-      brandName: 'GOUPDA',
-    },
-    hero: {
-      image: 'none', // Set to 'none' for the signature Red Jar CSS object
-    },
-    philosophy: {
-      title: 'Inspired by the Precision of Korean Aesthetics',
-      desc: 'Inspired by the world-renowned premium Korean aesthetic rituals, GOUPDA is meticulously engineered to illuminate your skin both inside and out. We present a new dimension of skincare born to transcend ordinary results—redefining your beauty and turning back the hands of time.',
-    },
-    categories: [
-      { id: 1, name: 'The Crimson Ritual', label: 'Aesthetic Wisdom', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1200&auto=format&fit=crop' },
-      { id: 2, name: 'The Azure Essence', label: 'Modern Wellness', img: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=1200&auto=format&fit=crop' },
-    ],
-    campaigns: [
-      {
-        title: 'Heritage in Every Drop',
-        description: 'Our Crimson Collection utilizes fermented Red Pine extracts, harvested during the first frost to capture the peak of nature\'s resilience. A fusion of tradition and biotechnology.',
-        image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=1200&auto=format&fit=crop'
-      }
-    ]
+  // Initialize state from LocalStorage or use Default
+  const [brandContent, setBrandContent] = useState(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : DEFAULT_CONTENT;
   });
 
   useEffect(() => {

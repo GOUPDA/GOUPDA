@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 interface AdminPanelProps {
   content: any;
@@ -7,7 +7,11 @@ interface AdminPanelProps {
   onClose: () => void;
 }
 
+const STORAGE_KEY = 'goupda_brand_content';
+
 const AdminPanel: React.FC<AdminPanelProps> = ({ content, setContent, onClose }) => {
+  const [isSaving, setIsSaving] = useState(false);
+
   const handleChange = (path: string, value: string) => {
     const keys = path.split('.');
     const newContent = JSON.parse(JSON.stringify(content));
@@ -22,6 +26,18 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ content, setContent, onClose })
     const lastKey = keys[keys.length - 1];
     temp[lastKey] = value;
     setContent(newContent);
+  };
+
+  const handleSave = () => {
+    setIsSaving(true);
+    // Persist to LocalStorage
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
+    
+    // Simulate a brief loading for UX feedback
+    setTimeout(() => {
+      setIsSaving(false);
+      onClose();
+    }, 800);
   };
 
   const ImageInput = ({ label, value, path }: { label: string, value: string, path: string }) => (
@@ -134,10 +150,11 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ content, setContent, onClose })
 
         <div className="fixed bottom-0 left-0 right-0 p-8 md:p-12 bg-gradient-to-t from-white via-white to-white/0 pointer-events-none">
           <button 
-            onClick={onClose}
-            className="pointer-events-auto w-full max-w-md mx-auto block bg-stone-900 text-white text-[10px] uppercase tracking-[0.4em] py-5 shadow-2xl hover:bg-stone-800 transition-all active:scale-[0.98]"
+            onClick={handleSave}
+            disabled={isSaving}
+            className={`pointer-events-auto w-full max-w-md mx-auto block bg-stone-900 text-white text-[10px] uppercase tracking-[0.4em] py-5 shadow-2xl transition-all active:scale-[0.98] ${isSaving ? 'opacity-70 cursor-wait' : 'hover:bg-stone-800'}`}
           >
-            Publish Changes
+            {isSaving ? 'Saving to Database...' : 'Publish & Save Changes'}
           </button>
         </div>
       </div>
