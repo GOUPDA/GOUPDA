@@ -1,14 +1,19 @@
 
 import React from 'react';
 
-const products = [
-  { id: 1, name: 'Celestial Crimson Jar', price: '₩ 1,730,000', label: 'Limited Edition', img: 'https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?q=80&w=800&auto=format&fit=crop' },
-  { id: 2, name: 'Azure Essence Bottle', price: '₩ 960,000', label: 'Elegance & Wellness', img: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800&auto=format&fit=crop' },
-  { id: 3, name: 'Midnight Pine Balm', price: '₩ 960,000', label: 'Korean Heritage', img: 'https://images.unsplash.com/photo-1556227702-d1e4e7b5c232?q=80&w=800&auto=format&fit=crop' },
-  { id: 4, name: 'Ethereal Cloud Mist', price: '₩ 800,000', label: 'Wellness Collection', img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop' },
-];
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  label: string;
+  img: string;
+}
 
-const ProductShowcase: React.FC = () => {
+interface ProductShowcaseProps {
+  products: Product[];
+}
+
+const ProductShowcase: React.FC<ProductShowcaseProps> = ({ products }) => {
   return (
     <section className="space-y-12">
       <div className="text-center space-y-4">
